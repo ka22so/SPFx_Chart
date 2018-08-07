@@ -55,7 +55,7 @@ export default class Chart extends React.Component<any, any> {
       <ResponsiveContainer width="100%" height={height}>
         <BarChart data={data} layout="vertical" margin={{top: 5, right: 5, left: 5, bottom: 5}}>
           <CartesianGrid strokeDasharray="3 3"/>
-          <YAxis dataKey="name" type="category" />
+          <YAxis dataKey="name" type="category" width={100} />
           <XAxis xAxisId="tasks" type="number" orientation="top" stroke={colorTasks} domain={domainTasks} ticks={ticksTasks} allowDataOverflow="false" />
           <XAxis xAxisId="sales" type="number" orientation="top" stroke={colorSales} domain={domainSales} ticks={ticksSales} allowDataOverflow="false" />
           <Tooltip content={<CustomizedTooltip />} />
