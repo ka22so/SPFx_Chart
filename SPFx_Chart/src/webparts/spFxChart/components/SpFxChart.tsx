@@ -1,25 +1,36 @@
 import * as React from 'react';
-import styles from './SpFxChart.module.scss';
-import { ISpFxChartProps } from './ISpFxChartProps';
+import styles from './SpfxChart.module.scss';
+import { ISPFxType } from '../containers/SPFxContainer';
 import { escape } from '@microsoft/sp-lodash-subset';
+import {
+  Environment,
+  EnvironmentType
+ } from '@microsoft/sp-core-library';
 
-export default class SpFxChart extends React.Component<ISpFxChartProps, {}> {
-  public render(): React.ReactElement<ISpFxChartProps> {
+import Selector from './Selector';
+import Chart from './Chart';
+
+export default class SpfxChart extends React.Component<ISPFxType, {}> {
+  public render(): React.ReactElement<ISPFxType> {
     return (
-      <div className={ styles.spFxChart }>
-        <div className={ styles.container }>
-          <div className={ styles.row }>
-            <div className={ styles.column }>
-              <span className={ styles.title }>Welcome to SharePoint!</span>
-              <p className={ styles.subTitle }>Customize SharePoint experiences using Web Parts.</p>
-              <p className={ styles.description }>{escape(this.props.description)}</p>
-              <a href="https://aka.ms/spfx" className={ styles.button }>
-                <span className={ styles.label }>Learn more</span>
-              </a>
-            </div>
-          </div>
-        </div>
+      <div className={styles.spFxChart}>
+        <Selector
+          fiscalYear={this.props.fiscalYear}
+          aggregateMonth={this.props.aggregateMonth}
+          getListItems={this.props.getListItems}
+          spHttpClient={this.props.spHttpClient}
+          currentWebUrl={this.props.currentWebUrl}
+          title={this.props.title}
+         />
+        {(() => {
+          return (Environment.type !== EnvironmentType.SharePoint || this.props.listItems.length > 0) ?
+            <Chart listItems={this.props.listItems} /> : <p className={styles["noList"]}>対象のデータがありません</p>;
+        })()}
       </div>
     );
+  }
+  // Event handler
+  private componentDidMount() {
+    this.props.getListItems(this.props.spHttpClient, this.props.currentWebUrl, this.props.title, this.props.fiscalYear, this.props.aggregateMonth);
   }
 }

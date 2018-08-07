@@ -1,0 +1,26 @@
+@import '~@microsoft/sp-office-ui-fabric-core/dist/sass/SPFabricCore.scss';
+
+.spfx-chart {
+
+  &-tooltip {
+    background-color: #FFF;
+    border: 1px solid #DDD;
+    padding: 10px 20px;
+  }
+
+  &-tooltip-tasks,
+  &-tooltip-sales {
+    text-align: right;
+  }
+
+  &-tooltip-sales {
+    color: #71afe5;
+  }
+  &-tooltip-tasks {
+    color: #b4a0ff;
+  }
+
+  &-wrap {
+    margin-left: 50px;
+  }
+}

@@ -8,21 +8,29 @@ import {
 } from '@microsoft/sp-webpart-base';
 
 import * as strings from 'SpFxChartWebPartStrings';
-import SpFxChart from './components/SpFxChart';
-import { ISpFxChartProps } from './components/ISpFxChartProps';
 
-export interface ISpFxChartWebPartProps {
-  description: string;
-}
+import Container from './containers/SPFxContainer';
+import { ISPFxProps } from './state/SPFxState';
+import configureStore from './store/SPFxStore';
+import { Provider } from 'react-redux';
 
-export default class SpFxChartWebPart extends BaseClientSideWebPart<ISpFxChartWebPartProps> {
+const store = configureStore();
+
+export default class SpFxChartWebPart extends BaseClientSideWebPart<ISPFxProps> {
 
   public render(): void {
-    const element: React.ReactElement<ISpFxChartProps > = React.createElement(
-      SpFxChart,
-      {
-        description: this.properties.description
-      }
+    const element: React.ReactElement<ISPFxProps > = React.createElement(
+      typeof Provider, null, React.createElement(
+        Container,
+        {
+          store: store,
+          description: this.properties.description,
+          spHttpClient: this.context.spHttpClient,
+          currentWebUrl: this.context.pageContext.web.serverRelativeUrl,
+          displayName: this.context.pageContext.user.displayName,
+          loginName: this.context.pageContext.user.loginName
+        }
+      )
     );
 
     ReactDom.render(element, this.domElement);
