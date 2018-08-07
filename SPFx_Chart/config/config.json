@@ -1,0 +1,13 @@
+{
+  "entries": [
+    {
+      "entry": "./lib/webparts/spFxChart/SpFxChartWebPart.js",
+      "manifest": "./src/webparts/spFxChart/SpFxChartWebPart.manifest.json",
+      "outputPath": "./dist/sp-fx-chart-web-part.js"
+    }
+  ],
+  "externals": {},
+  "localizedResources": {
+    "SpFxChartWebPartStrings": "webparts/spFxChart/loc/{locale}.js"
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "@microsoft/generator-sharepoint": {
+    "version": "1.5.1",
+    "libraryName": "sp-fx-chart",
+    "libraryId": "781d30ff-3e0d-478e-9b29-edf66ca45206",
+    "environment": "onprem",
+    "packageManager": "npm",
+    "isCreatingSolution": true
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/spfx-build/package-solution.schema.json",
+  "solution": {
+    "name": "sp-fx-chart-client-side-solution",
+    "id": "781d30ff-3e0d-478e-9b29-edf66ca45206",
+    "version": "1.0.0.0"
+  },
+  "paths": {
+    "zippedPackage": "solution/sp-fx-chart.sppkg"
+  }
+}
