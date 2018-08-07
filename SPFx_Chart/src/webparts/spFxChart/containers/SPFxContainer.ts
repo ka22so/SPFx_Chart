@@ -9,7 +9,6 @@ import { SPHttpClient } from '@microsoft/sp-http';
 import { getListItems } from '../api/getListItems';
 
 export interface IConnectedDispatch {
-  updateTitle: (title: string) => void;
   getListItems: (spHttpClient: SPHttpClient, currentWebUrl: string, listName: string, fiscalYear: string, aggregateMonth: string) => void;
 }
 export type ISPFxType = ISPFxProps & IConnectedDispatch & IState;
@@ -26,9 +25,6 @@ export function mapStateToProps(state: State, ownProps: ISPFxProps): IState {
 
 //Map the actions to the properties of the Component. Making them available in this.props inside the component.
 export const mapDispatchToProps = (dispatch: Dispatch<State>): IConnectedDispatch => ({
-  updateTitle: (title: string) => {
-    dispatch(Actions.updateTitle(title));
-  },
   getListItems: (spHttpClient: SPHttpClient, currentWebUrl: string, listName: string, fiscalYear: string, aggregateMonth: string) => {
     dispatch(getListItems(spHttpClient, currentWebUrl, listName, fiscalYear, aggregateMonth));
   },
